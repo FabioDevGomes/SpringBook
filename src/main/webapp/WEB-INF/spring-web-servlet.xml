@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<context:component-scan base-package="com.fabio.controller" />
+	<context:component-scan base-package="com.fabio" />
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,9 +21,20 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	<bean id="daoTesteTarget" class="com.fabio.dao.TesteDao"/>
+	<bean id="aroundAdviceTempoExecucao" class="com.fabio.aop.ArroundAdviceTempoExecucao"/>
+	<bean id="daoBookProxyApp" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="daoTesteTarget"/>
+		<property name="interceptorNames">
+			<list>
+				<value>aroundAdviceTempoExecucao</value>
+			</list>
+		</property>
+	</bean>
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<mvc:annotation-driven />
+	
 
 </beans>
