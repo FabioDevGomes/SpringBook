@@ -13,6 +13,8 @@ public class TesteDao {
 		List<String> sumulacaoResultado = new ArrayList<>();
 		sumulacaoResultado.add("Primeiro Resultado");
 		sumulacaoResultado.add("Segundo Resultado");
+		
+		System.out.println("TesteDao.listar()");
 	
 		return sumulacaoResultado;
 	}
